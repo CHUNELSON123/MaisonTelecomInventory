@@ -59,7 +59,7 @@ select {
 
 select {
     appearance: none;
-    background-image: url("data:image/svg+xml,..."); /* Add dropdown arrow icon */
+    background-image: url("data:image/svg+xml,...");  Add dropdown arrow icon 
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 12px;
@@ -88,4 +88,12 @@ select {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.search-bar input.form-contrl {
+    max-width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid #ced4da;
+    padding: 0.5rem 1rem;
 }

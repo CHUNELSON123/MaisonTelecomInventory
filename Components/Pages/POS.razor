@@ -35,8 +35,14 @@
                 <div class="card-body">
                     <div class="customer-section">
                         <span>Customer:</span>
-                        <button class="btn btn-addcustomer">Add Customer</button>
-                        <button class="btn btn-findcustomer">Find Customer</button>
+                        <div>
+                            <button class="btn btn-addcustomer" data-bs-toggle="modal" data-bs-target="#findCustomerModal">
+                                Find Customer
+                            </button>
+                            <button class="btn btn-findcustomer" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                                Add Customer
+                            </button>
+                        </div>
                     </div>
                     <div class="sale-items">
                         <div class="sale-item">
@@ -73,3 +79,5 @@
         </div>
     </div>
 </div>
+<FindCustomer />
+<AddCustomer />

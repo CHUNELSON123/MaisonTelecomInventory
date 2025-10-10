@@ -60,6 +60,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/FLAVIN/Documents/MT/MaisonTelecomInventory/Components/Pages/FindCustomer.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xGaW5kQ3VzdG9tZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/FLAVIN/Documents/MT/MaisonTelecomInventory/Components/Pages/POS.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQT1MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

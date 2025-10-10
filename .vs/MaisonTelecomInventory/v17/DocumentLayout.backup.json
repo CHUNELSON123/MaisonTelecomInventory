@@ -3,44 +3,64 @@
   "WorkspaceRootPath": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\addcustomer.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\addcustomer.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\customers.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\customers.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\pos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\pos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\products.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\products.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\dashboard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\dashboard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\products.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\products.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\customers.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\customers.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\pos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\pos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\customers.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\customers.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\addeditproduct.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\addeditproduct.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\customers.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\customers.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\findcustomer.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\findcustomer.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\addcustomer.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\addcustomer.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\addproduct.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\addproduct.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\products.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\products.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\sales.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\sales.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\dashboard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\dashboard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\products.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\products.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\sales.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\sales.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\sales.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\sales.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\pos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\pos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\data\\models\\sale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,28 +71,12 @@
       "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\addproduct.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\addproduct.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\addeditproduct.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\addeditproduct.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\editproduct.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\editproduct.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\wwwroot\\css\\custom-layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:wwwroot\\css\\custom-layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|solutionrelative:components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5665F38D-5952-44A8-85F0-4C8020A3B76A}|MaisonTelecomInventory.csproj|c:\\users\\flavin\\documents\\mt\\maisontelecominventory\\components\\pages\\report.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -138,24 +142,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AddCustomer.razor",
-              "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\AddCustomer.razor",
-              "RelativeDocumentMoniker": "Components\\Pages\\AddCustomer.razor",
-              "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\AddCustomer.razor",
-              "RelativeToolTip": "Components\\Pages\\AddCustomer.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-10T18:19:51.346Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -163,7 +154,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 4,
+              "Title": "FindCustomer.razor",
+              "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\FindCustomer.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\FindCustomer.razor",
+              "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\FindCustomer.razor",
+              "RelativeToolTip": "Components\\Pages\\FindCustomer.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-10T19:18:26.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AddCustomer.razor",
+              "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\AddCustomer.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\AddCustomer.razor",
+              "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\AddCustomer.razor",
+              "RelativeToolTip": "Components\\Pages\\AddCustomer.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-10T18:19:51.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "EditProduct.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\EditProduct.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\EditProduct.razor",
@@ -175,33 +192,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "customers.css",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\customers.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\customers.css",
               "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\customers.css",
               "RelativeToolTip": "wwwroot\\css\\customers.css",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACQAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-10-10T16:57:00.754Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "Customers.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\Customers.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Customers.razor",
-              "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\Customers.razor",
-              "RelativeToolTip": "Components\\Pages\\Customers.razor",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAAsAAAAEAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\Customers.razor*",
+              "RelativeToolTip": "Components\\Pages\\Customers.razor*",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAADoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-10T16:53:08.018Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "_Imports.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\_Imports.razor",
               "RelativeDocumentMoniker": "Components\\_Imports.razor",
@@ -209,25 +226,23 @@
               "RelativeToolTip": "Components\\_Imports.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-10T11:12:46.822Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-10T11:12:46.822Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "sales.css",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\sales.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\sales.css",
               "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\sales.css",
               "RelativeToolTip": "wwwroot\\css\\sales.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-10T10:45:22.218Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-10T10:45:22.218Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "report.css",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\report.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\report.css",
@@ -239,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 14,
               "Title": "pos.css",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\pos.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\pos.css",
@@ -247,25 +262,24 @@
               "RelativeToolTip": "wwwroot\\css\\pos.css",
               "ViewState": "AgIAAEIAAAAAAAAAAAAAAE0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-10T10:44:50.097Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-10T10:44:50.097Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "POS.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\POS.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\POS.razor",
-              "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\POS.razor",
-              "RelativeToolTip": "Components\\Pages\\POS.razor",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAEUAAAAzAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\POS.razor*",
+              "RelativeToolTip": "Components\\Pages\\POS.razor*",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAuwCkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-10T10:44:26.373Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Report.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\Report.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Report.razor",
@@ -277,32 +291,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Sales.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\Sales.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Sales.razor",
               "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\Sales.razor",
               "RelativeToolTip": "Components\\Pages\\Sales.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAC8AAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-10T10:43:46.749Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-10T10:43:46.749Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 2,
               "Title": "addeditproduct.css",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\addeditproduct.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\addeditproduct.css",
               "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\addeditproduct.css",
               "RelativeToolTip": "wwwroot\\css\\addeditproduct.css",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-10T10:15:06.65Z"
+              "WhenOpened": "2025-10-10T10:15:06.65Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 6,
               "Title": "AddProduct.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\AddProduct.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\AddProduct.razor",
@@ -310,37 +324,37 @@
               "RelativeToolTip": "Components\\Pages\\AddProduct.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-10T10:14:35.561Z"
+              "WhenOpened": "2025-10-10T10:14:35.561Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
               "Title": "products.css",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\products.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\products.css",
               "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\products.css",
               "RelativeToolTip": "wwwroot\\css\\products.css",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAAEsAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAAAIoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-10T09:39:15.595Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-10T09:39:15.595Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "Products.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\Products.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Products.razor",
               "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\Products.razor",
               "RelativeToolTip": "Components\\Pages\\Products.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGUAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-10T09:38:28.781Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "custom-layout.css",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\custom-layout.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\custom-layout.css",
@@ -352,7 +366,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "app.css",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\app.css",
               "RelativeDocumentMoniker": "wwwroot\\app.css",
@@ -364,7 +378,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "NavMenu.razor.css",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Layout\\NavMenu.razor.css",
               "RelativeDocumentMoniker": "Components\\Layout\\NavMenu.razor.css",
@@ -376,31 +390,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 8,
               "Title": "Dashboard.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\Dashboard.razor",
               "RelativeDocumentMoniker": "Components\\Pages\\Dashboard.razor",
               "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Pages\\Dashboard.razor",
               "RelativeToolTip": "Components\\Pages\\Dashboard.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEQAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-10T08:15:49.225Z"
+              "WhenOpened": "2025-10-10T08:15:49.225Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 7,
               "Title": "App.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\App.razor",
               "RelativeDocumentMoniker": "Components\\App.razor",
               "ToolTip": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\App.razor",
               "RelativeToolTip": "Components\\App.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAABoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-10T08:14:15.109Z"
+              "WhenOpened": "2025-10-10T08:14:15.109Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "Dashboard.css",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\wwwroot\\css\\Dashboard.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Dashboard.css",
@@ -408,12 +424,11 @@
               "RelativeToolTip": "wwwroot\\css\\Dashboard.css",
               "ViewState": "AgIAACsAAAAAAAAAAADwv0EAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-10T08:13:54.758Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-10T08:13:54.758Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Layout\\MainLayout.razor",
               "RelativeDocumentMoniker": "Components\\Layout\\MainLayout.razor",
@@ -425,7 +440,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "NavMenu.razor",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Components\\Layout\\NavMenu.razor",
               "RelativeDocumentMoniker": "Components\\Layout\\NavMenu.razor",
@@ -437,7 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "20251009225518_InitialCommit.cs",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Migrations\\20251009225518_InitialCommit.cs",
               "RelativeDocumentMoniker": "Migrations\\20251009225518_InitialCommit.cs",
@@ -449,7 +464,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -461,7 +476,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -473,7 +488,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "InventoryDbContext.cs",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Data\\InventoryDbContext.cs",
               "RelativeDocumentMoniker": "Data\\InventoryDbContext.cs",
@@ -485,7 +500,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "SaleItem.cs",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Data\\Models\\SaleItem.cs",
               "RelativeDocumentMoniker": "Data\\Models\\SaleItem.cs",
@@ -497,7 +512,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "Sale.cs",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Data\\Models\\Sale.cs",
               "RelativeDocumentMoniker": "Data\\Models\\Sale.cs",
@@ -505,12 +520,11 @@
               "RelativeToolTip": "Data\\Models\\Sale.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-09T22:12:03.81Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-09T22:12:03.81Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "Customer.cs",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Data\\Models\\Customer.cs",
               "RelativeDocumentMoniker": "Data\\Models\\Customer.cs",
@@ -522,7 +536,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Data\\Models\\Product.cs",
               "RelativeDocumentMoniker": "Data\\Models\\Product.cs",
@@ -534,7 +548,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "Category.cs",
               "DocumentMoniker": "C:\\Users\\FLAVIN\\Documents\\MT\\MaisonTelecomInventory\\Data\\Models\\Category.cs",
               "RelativeDocumentMoniker": "Data\\Models\\Category.cs",

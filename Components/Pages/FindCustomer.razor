@@ -1,0 +1,35 @@
+﻿ 
+<div class="modal fade" id="findCustomerModal" tabindex="-1" aria-labelledby="findCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="findCustomerModalLabel">Find or Add Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <div class="search-bar">
+                    <input type="text" class="form-control mb-3" placeholder="Search by name or phone ...">
+               </div>
+
+                <h6>Results:</h6>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        CHU BEH
+                        <button class="btn btn-primary btn-sm">Select</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        NELSON
+                        <button class="btn btn-primary btn-sm">Select</button>
+                    </li>
+                </ul>
+
+                <hr />
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <span>Can't find them?</span>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomerModal">Create New Customer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

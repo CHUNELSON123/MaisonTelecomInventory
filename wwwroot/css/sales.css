@@ -1,0 +1,27 @@
+﻿h1 {
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.search-bar input.form-control {
+    max-width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid #ced4da;
+    padding: 0.5rem 1rem;
+}
+
+.table thead th {
+    font-weight: bold;
+    text-align: center;
+}
+
+.table tbody td {
+    height: 50px; /* To give the empty rows some height */
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pagination-nav {
+    margin-top: 1.5rem;
+}

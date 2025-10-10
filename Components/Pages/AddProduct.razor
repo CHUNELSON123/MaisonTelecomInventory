@@ -1,0 +1,47 @@
+﻿@page "/addproduct"
+
+<div class="add-product-container">
+    <div class="header-container">
+        <h1>Add New Product</h1>
+      <a href="/products">
+            <button class="back-button">Back</button>
+      </a>
+    </div>
+
+    <div class="form-columns">
+        <div class="form-column">
+            <div class="form-group">
+                <label for="product-name">Product Name</label>
+                <input type="text" id="product-name" />
+            </div>
+            <div class="form-group">
+                <label for="brand">Brand</label>
+                <input type="text" id="brand" />
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category"></select>
+            </div>
+        </div>
+
+        <div class="form-column">
+            <div class="form-group">
+                <label for="cost-price">Cost Price</label>
+                <input type="text" id="cost-price" />
+            </div>
+            <div class="form-group">
+                <label for="selling-price">Selling Price</label>
+                <input type="text" id="selling-price" />
+            </div>
+            <div class="form-group">
+                <label for="stock-quantity">Stock Quantity</label>
+                <input type="text" id="stock-quantity" />
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="save-button">Save Product</button>
+        <button class="cancel-button">Cancel</button>
+    </div>
+</div>

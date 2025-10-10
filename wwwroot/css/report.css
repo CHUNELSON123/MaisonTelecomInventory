@@ -1,0 +1,35 @@
+﻿h1 {
+    font-weight: bold;
+}
+
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.period-selector span {
+    margin-right: 0.5rem;
+}
+
+.report-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.report-card .card-title {
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.summary-item {
+    margin-top: 0.5rem;
+}
+
+.report-card ol {
+    padding-left: 1.2rem;
+}

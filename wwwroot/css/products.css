@@ -11,14 +11,16 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+
 }
 
-.search-bar {
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 300px;
-}
+    .top-action-bar input.search-bar {
+        max-width: 400px;
+        border-radius: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border: 1px solid #ced4da;
+        padding: 0.5rem 1rem;
+    }
 
 .btn-add-product {
     background-color: #1E40AF;
@@ -33,7 +35,7 @@
 .products-table-container {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     overflow: hidden; /* Ensures the border-radius is respected by the table */
 }
@@ -129,4 +131,8 @@
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.pagination-nav {
+    margin-top: 1.5rem;
 }

@@ -1,0 +1,85 @@
+﻿h1 {
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.pos-container {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.product-selection {
+    flex: 1;
+}
+
+.sale-summary {
+    flex: 1.2;
+}
+
+.card-header {
+    font-weight: bold;
+}
+.search-bar input.form-control {
+    max-width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid #ced4da;
+    padding: 0.5rem 1rem;
+}
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.customer-section {
+    margin-bottom: 1.5rem;
+}
+
+    .customer-section .btn {
+        margin-left: 0.5rem;
+    }
+
+.sale-item {
+    padding: 1rem 0;
+    border-top: 1px solid #eee;
+}
+
+.item-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+    .item-actions .quantity {
+        padding: 0 0.5rem;
+    }
+
+.total-section {
+    text-align: right;
+    margin-top: 1.5rem;
+    font-weight: bold;
+}
+
+.w-100 {
+    margin-top: 1rem;
+}
+
+.btn-add, .btn-complete, .btn-addcustomer, .btn-findcustomer {
+    background-color: #1E40AF;
+    color: black;
+   
+}
+.btn-remove {
+    background-color: #dc3545;
+    color: black;
+    
+}

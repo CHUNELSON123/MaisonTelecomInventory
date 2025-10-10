@@ -1,0 +1,75 @@
+﻿@page "/pos"
+
+<div class="pos-page">
+    <h1>Record a New Sale</h1>
+
+    <div class="pos-container">
+        <div class="product-selection">
+            <div class="card">
+                <div class="card-header">
+                    Add Product
+                </div>
+                <div class="card-body">
+                    <div class="search-bar">
+                        <input type="text" class="form-control" placeholder="Search Product ...">
+                    </div>
+                    <div class="results">
+                        <p>Results:</p>
+                        <div class="product-item">
+                            <span>iPhone 11 Pro</span>
+                            <button class="btn btn-add">Add</button>
+                        </div>
+                        <div class="product-item">
+                            <span>Samsung Cable</span>
+                            <button class="btn btn-add">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sale-summary">
+            <div class="card">
+                <div class="card-header">
+                    Customer Sale (2 Items)
+                </div>
+                <div class="card-body">
+                    <div class="customer-section">
+                        <span>Customer:</span>
+                        <button class="btn btn-addcustomer">Add Customer</button>
+                        <button class="btn btn-findcustomer">Find Customer</button>
+                    </div>
+                    <div class="sale-items">
+                        <div class="sale-item">
+                            <div class="item-info">
+                                <span>iPhone 11 Pro</span>
+                                <span class="price">FCFA 120, 000</span>
+                            </div>
+                            <div class="item-actions">
+                                <button class="btn btn-sm btn-secondary">-</button>
+                                <span class="quantity">2</span>
+                                <button class="btn btn-sm btn-secondary">+</button>
+                                <button class="btn btn-sm btn-remove">Remove</button>
+                            </div>
+                        </div>
+                        <div class="sale-item">
+                            <div class="item-info">
+                                <span>Samsun</span>
+                                <span class="price">FCFA 120, 000</span>
+                            </div>
+                            <div class="item-actions">
+                                <button class="btn btn-sm btn-secondary">-</button>
+                                <span class="quantity">2</span>
+                                <button class="btn btn-sm btn-secondary">+</button>
+                                <button class="btn btn-sm btn-remove">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total-section">
+                        <h5>Total: FCFA 200, 000</h5>
+                    </div>
+                    <button class="btn btn-complete w-100">Complete Sale</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

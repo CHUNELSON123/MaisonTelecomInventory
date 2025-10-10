@@ -1,4 +1,9 @@
 wwwroot\app.css
 wwwroot\bootstrap\bootstrap.min.css
 wwwroot\bootstrap\bootstrap.min.css.map
+wwwroot\css\custom-layout.css
+wwwroot\css\Dashboard.css
+wwwroot\css\products.css
 wwwroot\favicon.png
+wwwroot\Images\logo.jpg
+wwwroot\css\addeditproduct.css

@@ -1,61 +1,40 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">
-            <span class="oi oi-phone" aria-hidden="true"></span> Maison Telecom
-        </a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+﻿<nav class="flex-column">
+    <div class="nav-header">
+        <span class="bi bi-list" aria-hidden="true"></span> Navigation
     </div>
-</div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Dashboard
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="products">
-                <span class="oi oi-box" aria-hidden="true"></span> Products
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="customers">
-                <span class="oi oi-people" aria-hidden="true"></span> Customers
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="pos">
-                <span class="oi oi-cart" aria-hidden="true"></span> Point of Sales
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="sales">
-                <span class="oi oi-dollar" aria-hidden="true"></span> Sales
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="reports">
-                <span class="oi oi-bar-chart" aria-hidden="true"></span> Report
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="logout">
-                <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
-            </NavLink>
-        </div>
-    </nav>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            Dashboard
+        </NavLink>
+    </div>
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="products">
+            Products
+        </NavLink>
+    </div>
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="customers">
+            Customers
+        </NavLink>
+    </div>
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="pos">
+            Point of Sales
+        </NavLink>
+    </div>
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="sales">
+            Sales
+        </NavLink>
+    </div>
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="report">
+            Report
+        </NavLink>
+    </div>
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="logout">
+            Logout
+        </NavLink>
+    </div>
+</nav>

@@ -1,0 +1,109 @@
+﻿/* Global styles for the main layout */
+
+.top-header {
+    background-color: #1E40AF;
+    color: #000;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.logo-placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #34495e;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-weight: bold;
+    margin-right: 12px;
+}
+
+.content-body {
+    padding: 1.5rem;
+}
+
+/* Add these new styles for the sidebar and main content */
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* This makes the layout fill the entire screen height */
+}
+
+.content-wrapper {
+    display: flex;
+    flex-grow: 1; /* This makes the content area fill the remaining space */
+    overflow: hidden; /* Prevents unwanted scrollbars */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    border-right: 1px solid #000;
+    padding-top: 1rem;
+    flex-shrink: 0; /* Prevents the sidebar from shrinking */
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto; /* Adds a scrollbar only if content is too long */
+}
+
+ 
+
+/* New style for the logo image */
+.logo-image {
+    width: 35px;
+    height: 35px;
+    margin-right: 12px;
+    border-radius:35px;
+}
+
+/* Style for the main content area to push the footer down */
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-body {
+    flex-grow: 1; /* This makes the content take up available space */
+}
+
+/* New style for the footer */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    color: #6c757d;
+    font-size: 0.9em;
+    border-top: 1px solid #000;
+    flex-shrink: 0; /* Prevents the footer from shrinking */
+}
+
+/* New style to make sidebar navigation text black */
+.sidebar .nav-link {
+    color: #000; /* Sets the link color to black */
+}
+
+    /* Optional: Style for the active link to give it a modern feel */
+    .sidebar .nav-link.active {
+        background-color: #f0f0f0;
+        font-weight: bold;
+    }
+
+    .sidebar .nav-link:hover {
+        background-color: #f0f0f0;
+    }

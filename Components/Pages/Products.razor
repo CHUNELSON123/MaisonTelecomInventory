@@ -1,0 +1,94 @@
+﻿@page "/products"
+
+<PageTitle>Products</PageTitle>
+
+<div class="products-page">
+    <h1 class="page-title">Products</h1>
+
+    <div class="top-action-bar">
+        <input type="text" class="search-bar" placeholder="Search for a product..." />
+
+        <div class="buttons-container">
+            <a href="/products/add">
+                <button class="btn-add-product">+ Add Product</button>
+           </a>
+
+            <div class="dropdown">
+                <button class="btn-filter">Filter</button>
+                <div class="dropdown-content">
+                    <a href="#">Filter by Category</a>
+                    <a href="#">Filter by Brand</a>
+                    <a href="#">Filter by Price</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="products-table-container">
+        <table class="products-table">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Product Name</th>
+                    <th>Brand</th>
+                    <th>Category</th>
+                    <th>Selling Price</th>
+                    <th>Quantity in Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>iPhone 14 Pro Max</td>
+                    <td>Apple</td>
+                    <td>Phones</td>
+                    <td>FCFA 750,000</td>
+                    <td>15</td>
+                    <td>
+                        <a href="/products/edit">
+                            <button class="btn-action btn-edit">Edit</button>
+                        </a>
+                        <button class="btn-action btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Samsung S22 Ultra</td>
+                    <td>Samsung</td>
+                    <td>Phones</td>
+                    <td>FCFA 650,000</td>
+                    <td>10</td>
+                    <td>
+                        <button class="btn-action btn-edit">Edit</button>
+                        <button class="btn-action btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Laptop Charger</td>
+                    <td>HP</td>
+                    <td>Accessories</td>
+                    <td>FCFA 25,000</td>
+                    <td>30</td>
+                    <td>
+                        <button class="btn-action btn-edit">Edit</button>
+                        <button class="btn-action btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>USB-C Cable</td>
+                    <td>Anker</td>
+                    <td>Accessories</td>
+                    <td>FCFA 5,000</td>
+                    <td>50</td>
+                    <td>
+                        <button class="btn-action btn-edit">Edit</button>
+                        <button class="btn-action btn-delete">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

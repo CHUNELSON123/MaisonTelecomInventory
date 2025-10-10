@@ -16,7 +16,6 @@ C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\MaisonTelec
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
-C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\scopedcss\bundle\MaisonTelecomInventory.styles.css
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\scopedcss\projectbundle\MaisonTelecomInventory.bundle.scp.css
@@ -168,3 +167,4 @@ C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\bin\Debug\net8.0\runtimes\wi
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\MaisonTelecomInventory.csproj.AssemblyReference.cache
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\MaisonTe.F009DE4B.Up2Date
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\MaisonTelecomInventory.sourcelink.json

@@ -1,12 +1,14 @@
 ﻿@page "/sales"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@inject InventoryDbContext DbContext
+@inject NavigationManager NavigationManager
 
 <div class="sales-history-page">
     <h1>Sales History</h1>
-
     <div class="search-bar">
-        <input type="text" class="form-control" placeholder="Search for a product ...">
+        <input type="text" class="form-control" placeholder="Search by Sale ID or Customer Name..." @oninput="SearchSales">
     </div>
-
     <table class="table table-bordered mt-4">
         <thead>
             <tr>
@@ -19,31 +21,63 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><button class="btn btn-primary">Details</button></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><button class="btn btn-primary">Details</button></td>
-            </tr>
+            @if (pagedSales != null && pagedSales.Any())
+            {
+                @foreach (var (sale, index) in pagedSales.Select((s, i) => (s, i)))
+                {
+                    <tr>
+                        <td>@((currentPage - 1) * pageSize + index + 1)</td>
+                        <td>#@sale.SaleID.ToString("D4")</td>
+                        <td>@sale.SaleDate.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@(sale.Customer?.Name ?? "Walk-in Customer")</td>
+                        <td>@CurrencyHelper.FormatPrice(sale.TotalPrice)</td>
+                        <td><button class="btn btn-primary" @onclick="() => ViewDetails(sale.SaleID)">Details</button></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="6" class="text-center">No sales found.</td></tr>
+            }
         </tbody>
     </table>
-
     <nav class="pagination-nav">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item @(currentPage == 1 ? "disabled" : "")"><a class="page-link" href="#" @onclick:preventDefault @onclick="() => ChangePage(currentPage - 1)">Previous</a></li>
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                var pageNumber = i;
+                <li class="page-item @(currentPage == pageNumber ? "active" : "")"><a class="page-link" href="#" @onclick:preventDefault @onclick="() => ChangePage(pageNumber)">@pageNumber</a></li>
+            }
+            <li class="page-item @(currentPage == totalPages ? "disabled" : "")"><a class="page-link" href="#" @onclick:preventDefault @onclick="() => ChangePage(currentPage + 1)">Next</a></li>
         </ul>
     </nav>
 </div>
+
+@code {
+    private List<Sale> allSales = new();
+    private List<Sale> pagedSales = new();
+    private int currentPage = 1, pageSize = 20, totalPages;
+    private string searchTerm = string.Empty;
+
+    protected override async Task OnInitializedAsync() { await LoadSales(); }
+
+    private async Task LoadSales()
+    {
+        var salesQuery = DbContext.Sales.Include(s => s.Customer).AsQueryable();
+        if (!string.IsNullOrWhiteSpace(searchTerm)) salesQuery = salesQuery.Where(s => s.SaleID.ToString().Contains(searchTerm) || (s.Customer != null && s.Customer.Name.ToLower().Contains(searchTerm)));
+        allSales = await salesQuery.OrderByDescending(s => s.SaleDate).ToListAsync();
+        UpdatePagedSales();
+    }
+
+    private void UpdatePagedSales()
+    {
+        totalPages = (int)Math.Ceiling(allSales.Count / (double)pageSize);
+        pagedSales = allSales.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+        StateHasChanged();
+    }
+
+    private async Task SearchSales(ChangeEventArgs e) { searchTerm = e.Value.ToString().ToLower(); currentPage = 1; await LoadSales(); }
+    private void ChangePage(int pageNumber) { if (pageNumber < 1 || pageNumber > totalPages) return; currentPage = pageNumber; UpdatePagedSales(); }
+    private void ViewDetails(int saleId) { }
+}

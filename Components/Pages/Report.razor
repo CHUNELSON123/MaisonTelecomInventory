@@ -1,55 +1,201 @@
 ﻿@page "/report"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@inject InventoryDbContext DbContext
 
 <div class="report-page">
     <div class="report-header">
         <h1>Business Report</h1>
         <div class="period-selector">
             <span>Select Report Period:</span>
-            <button class="btn btn-primary">This Month</button>
+            <select class="form-select" @onchange="OnPeriodChange">
+                <option value="Today">Today</option>
+                <option value="ThisWeek">This Week</option>
+                <option value="ThisMonth" selected>This Month</option>
+                <option value="ThisYear">This Year</option>
+                <option value="AllTime">All Time</option>
+            </select>
         </div>
     </div>
 
-    <div class="report-grid">
-        <div class="card report-card">
-            <div class="card-body">
-                <h5 class="card-title">Sale Summary</h5>
-                <div class="summary-item">
-                    <span>Total Revenue:</span>
+    @if (isLoading)
+    {
+        <p><em>Loading report...</em></p>
+    }
+    else
+    {
+        <div class="report-grid">
+            <div class="card report-card">
+                <div class="card-body">
+                    <h5 class="card-title">Sale Summary</h5>
+                    <div class="summary-item">
+                        <span>Total Revenue:</span>
+                        <strong>@CurrencyHelper.FormatPrice(totalRevenue)</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Total Profit:</span>
+                        <strong>@CurrencyHelper.FormatPrice(totalProfit)</strong>
+                    </div>
                 </div>
-                <div class="summary-item">
-                    <span>Total Profit:</span>
+            </div>
+            <div class="card report-card">
+                <div class="card-body">
+                    <h5 class="card-title">Best-Selling Products</h5>
+                    @if (bestSellingProducts.Any())
+                    {
+                        <ol>
+                            @foreach (var product in bestSellingProducts)
+                            {
+                                <li>@product.Name: (@product.UnitsSold sold)</li>
+                            }
+                        </ol>
+                    }
+                    else
+                    {
+                        <p>No sales in this period.</p>
+                    }
+                </div>
+            </div>
+            <div class="card report-card">
+                <div class="card-body">
+                    <h5 class="card-title">Top Customers (By Spend)</h5>
+                    @if (topCustomers.Any())
+                    {
+                        <ol>
+                            @foreach (var customer in topCustomers)
+                            {
+                                <li>@customer.Name: @CurrencyHelper.FormatPrice(customer.TotalSpent)</li>
+                            }
+                        </ol>
+                    }
+                    else
+                    {
+                        <p>No customer sales in this period.</p>
+                    }
+                </div>
+            </div>
+            <div class="card report-card">
+                <div class="card-body">
+                    <h5 class="card-title">Inventory Summary</h5>
+                    <div class="summary-item">
+                        <span>Total Items In Stock:</span>
+                        <strong>@totalItemsInStock</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Total Stock Value:</span>
+                        <strong>@CurrencyHelper.FormatPrice(totalStockValue)</strong>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card report-card">
-            <div class="card-body">
-                <h5 class="card-title">Best - Selling Products</h5>
-                <ol>
-                    <li>iPhone 11 Pro: (15 sold)</li>
-                    <li>Samsung Cable: (12 sold)</li>
-                    <li>Laptop: (5 sold)</li>
-                </ol>
-            </div>
-        </div>
-        <div class="card report-card">
-            <div class="card-body">
-                <h5 class="card-title">Top Customers (By Spend)</h5>
-                <ol>
-                    <li>John Doe:</li>
-                    <li>CHU:</li>
-                </ol>
-            </div>
-        </div>
-        <div class="card report-card">
-            <div class="card-body">
-                <h5 class="card-title">Inventory Summary</h5>
-                <div class="summary-item">
-                    <span>Total Items In stock :</span>
-                </div>
-                <div class="summary-item">
-                    <span>Total Stuck Value:</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
+
+@code {
+    private decimal totalRevenue;
+    private decimal totalProfit;
+    private int totalItemsInStock;
+    private decimal totalStockValue;
+    private List<BestSellingProductViewModel> bestSellingProducts = new();
+    private List<TopCustomerViewModel> topCustomers = new();
+    private bool isLoading = true;
+    private string selectedPeriod = "ThisMonth";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadReportData();
+    }
+
+    private async Task OnPeriodChange(ChangeEventArgs e)
+    {
+        selectedPeriod = e.Value.ToString();
+        await LoadReportData();
+    }
+
+    private async Task LoadReportData()
+    {
+        isLoading = true;
+        await InvokeAsync(StateHasChanged);
+
+        DateTime startDate = DateTime.MinValue;
+        DateTime endDate = DateTime.MaxValue;
+        var now = DateTime.Now;
+
+        switch (selectedPeriod)
+        {
+            case "Today":
+                startDate = now.Date;
+                endDate = now.Date.AddDays(1).AddTicks(-1);
+                break;
+            case "ThisWeek":
+                startDate = now.Date.AddDays(-(int)now.DayOfWeek);
+                endDate = startDate.AddDays(7).AddTicks(-1);
+                break;
+            case "ThisMonth":
+                startDate = new DateTime(now.Year, now.Month, 1);
+                endDate = startDate.AddMonths(1).AddTicks(-1);
+                break;
+            case "ThisYear":
+                startDate = new DateTime(now.Year, 1, 1);
+                endDate = startDate.AddYears(1).AddTicks(-1);
+                break;
+            case "AllTime":
+                // No date filter needed
+                break;
+        }
+
+        var salesInPeriod = DbContext.Sales
+                                     .Where(s => s.SaleDate >= startDate && s.SaleDate <= endDate);
+
+        totalRevenue = await salesInPeriod.SumAsync(s => s.TotalPrice);
+
+        var saleItemsInPeriod = DbContext.SaleItems
+                                       .Where(si => si.Sale.SaleDate >= startDate && si.Sale.SaleDate <= endDate)
+                                       .Include(si => si.Product);
+
+        totalProfit = await saleItemsInPeriod
+            .SumAsync(si => si.QuantitySold * (si.PriceAtTimeOfSale - (si.Product != null ? si.Product.CostPrice : 0)));
+
+        bestSellingProducts = await saleItemsInPeriod
+            .GroupBy(si => si.Product.Name)
+            .Select(g => new BestSellingProductViewModel
+            {
+                Name = g.Key,
+                UnitsSold = g.Sum(si => si.QuantitySold)
+            })
+            .OrderByDescending(p => p.UnitsSold)
+            .Take(5)
+            .ToListAsync();
+
+        topCustomers = await salesInPeriod
+            .Where(s => s.Customer != null)
+            .GroupBy(s => s.Customer.Name)
+            .Select(g => new TopCustomerViewModel
+            {
+                Name = g.Key,
+                TotalSpent = g.Sum(s => s.TotalPrice)
+            })
+            .OrderByDescending(c => c.TotalSpent)
+            .Take(5)
+            .ToListAsync();
+
+        // Inventory summary is independent of the date period
+        totalItemsInStock = await DbContext.Products.SumAsync(p => p.StockQuantity);
+        totalStockValue = await DbContext.Products.SumAsync(p => p.StockQuantity * p.CostPrice);
+
+        isLoading = false;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public class BestSellingProductViewModel
+    {
+        public string Name { get; set; }
+        public int UnitsSold { get; set; }
+    }
+
+    public class TopCustomerViewModel
+    {
+        public string Name { get; set; }
+        public decimal TotalSpent { get; set; }
+    }
+}

@@ -1,4 +1,4 @@
-﻿// Inside Data/Customer.cs
+﻿// Inside Data/Models/Customer.cs
 using System.ComponentModel.DataAnnotations;
 
 public class Customer
@@ -12,4 +12,7 @@ public class Customer
 
     [StringLength(50)]
     public string? PhoneNumber { get; set; }
+
+    // This is the new property that links a customer to their sales.
+    public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
 }

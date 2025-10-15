@@ -1,26 +1,78 @@
-﻿<div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addCustomerModalLabel">Create a New Customer</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="customerName" class="form-label">Customer Name</label>
-                        <input type="text" class="form-control" id="customerName">
-                    </div>
-                    <div class="mb-3">
-                        <label for="phoneNumber" class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" id="phoneNumber">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save Customer</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+﻿@rendermode InteractiveServer
+@using System.ComponentModel.DataAnnotations
+@inject InventoryDbContext DbContext
+
+@if (IsOpen)
+{
+    <div class="modal fade show" style="display:block" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create a New Customer</h5>
+                    <button type="button" class="btn-close" @onclick="Close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <EditForm Model="@newCustomer" OnValidSubmit="SaveCustomer">
+                        <DataAnnotationsValidator />
+                        <div class="mb-3">
+                            <label for="customerName" class="form-label">Customer Name</label>
+                            <InputText class="form-control" id="customerName" @bind-Value="newCustomer.Name" />
+                            <ValidationMessage For="@(() => newCustomer.Name)" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                            <InputText class="form-control" id="phoneNumber" @bind-Value="newCustomer.PhoneNumber" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save Customer</button>
+                            <button type="button" class="btn btn-danger" @onclick="Close">Cancel</button>
+                        </div>
+                    </EditForm>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+
+@code {
+    [Parameter] public EventCallback<Customer> OnCustomerAdded { get; set; }
+
+    private CustomerViewModel newCustomer = new();
+    public bool IsOpen { get; private set; }
+
+    public void Open()
+    {
+        newCustomer = new();
+        IsOpen = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        IsOpen = false;
+        StateHasChanged();
+    }
+
+    private async Task SaveCustomer()
+    {
+        var customer = new Customer
+        {
+            Name = newCustomer.Name,
+            PhoneNumber = newCustomer.PhoneNumber
+        };
+
+        DbContext.Customers.Add(customer);
+        await DbContext.SaveChangesAsync();
+        await OnCustomerAdded.InvokeAsync(customer);
+        Close();
+    }
+
+    public class CustomerViewModel
+    {
+        [Required(ErrorMessage = "Customer name is required.")]
+        public string Name { get; set; }
+        public string? PhoneNumber { get; set; }
+    }
+}

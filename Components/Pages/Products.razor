@@ -1,29 +1,41 @@
 ﻿@page "/products"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@inject InventoryDbContext DbContext
+@inject NavigationManager NavigationManager
 
 <PageTitle>Products</PageTitle>
 
 <div class="products-page">
     <h1 class="page-title">Products</h1>
-
     <div class="top-action-bar">
-        <input type="text" class="search-bar" placeholder="Search for a product..." />
-
+        <input type="text" class="search-bar" placeholder="Search for a product..." @oninput="SearchProducts" />
         <div class="buttons-container">
             <a href="/addproduct">
                 <button class="btn-add-product">+ Add Product</button>
-           </a>
-
+            </a>
             <div class="dropdown">
                 <button class="btn-filter">Filter</button>
                 <div class="dropdown-content">
-                    <a href="#">Filter by Category</a>
-                    <a href="#">Filter by Brand</a>
-                    <a href="#">Filter by Price</a>
+                    <select @onchange="FilterByBrand" class="form-control mb-2">
+                        <option value="0">Filter by Brand</option>
+                        @foreach (var brand in brands)
+                        {
+                            <option value="@brand.BrandID">@brand.Name</option>
+                        }
+                    </select>
+                    <select @onchange="FilterByCategory" class="form-control">
+                        <option value="0">Filter by Category</option>
+                        @foreach (var category in categories)
+                        {
+                            <option value="@category.CategoryID">@category.Name</option>
+                        }
+                    </select>
+                    <button class="btn btn-secondary mt-2" @onclick="ClearFilters">Clear Filters</button>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="products-table-container">
         <table class="products-table">
             <thead>
@@ -32,73 +44,94 @@
                     <th>Product Name</th>
                     <th>Brand</th>
                     <th>Category</th>
+                    <th>Cost Price</th>
                     <th>Selling Price</th>
                     <th>Quantity in Stock</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>iPhone 14 Pro Max</td>
-                    <td>Apple</td>
-                    <td>Phones</td>
-                    <td>FCFA 750,000</td>
-                    <td>15</td>
-                    <td>
-                        <a href="/editproduct">
-                            <button class="btn-action btn-edit">Edit</button>
-                        </a>
-                        <button class="btn-action btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Samsung S22 Ultra</td>
-                    <td>Samsung</td>
-                    <td>Phones</td>
-                    <td>FCFA 650,000</td>
-                    <td>10</td>
-                    <td>
-                        <button class="btn-action btn-edit">Edit</button>
-                        <button class="btn-action btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Laptop Charger</td>
-                    <td>HP</td>
-                    <td>Accessories</td>
-                    <td>FCFA 25,000</td>
-                    <td>30</td>
-                    <td>
-                        <button class="btn-action btn-edit">Edit</button>
-                        <button class="btn-action btn-delete">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>USB-C Cable</td>
-                    <td>Anker</td>
-                    <td>Accessories</td>
-                    <td>FCFA 5,000</td>
-                    <td>50</td>
-                    <td>
-                        <button class="btn-action btn-edit">Edit</button>
-                        <button class="btn-action btn-delete">Delete</button>
-                    </td>
-                </tr>
+                @if (pagedProducts != null && pagedProducts.Any())
+                {
+                    @foreach (var (product, index) in pagedProducts.Select((p, i) => (p, i)))
+                    {
+                        <tr>
+                            <td>@((currentPage - 1) * pageSize + index + 1)</td>
+                            <td>@product.Name</td>
+                            <td>@product.Brand?.Name</td>
+                            <td>@product.Category?.Name</td>
+                            <td>@CurrencyHelper.FormatPrice(product.CostPrice)</td>
+                            <td>@CurrencyHelper.FormatPrice(product.SellingPrice)</td>
+                            <td>@product.StockQuantity</td>
+                            <td>
+                                <a href="@($"/editproduct/{product.ProductID}")"><button class="btn-action btn-edit">Edit</button></a>
+                                <button class="btn-action btn-delete" @onclick="() => DeleteProduct(product.ProductID)">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="8" class="text-center">No products found.</td></tr>
+                }
             </tbody>
         </table>
     </div>
-
     <nav class="pagination-nav">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="#" @onclick:preventDefault @onclick="() => ChangePage(currentPage - 1)">Previous</a>
+            </li>
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                var pageNumber = i;
+                <li class="page-item @(currentPage == pageNumber ? "active" : "")">
+                    <a class="page-link" href="#" @onclick:preventDefault @onclick="() => ChangePage(pageNumber)">@pageNumber</a>
+                </li>
+            }
+            <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                <a class="page-link" href="#" @onclick:preventDefault @onclick="() => ChangePage(currentPage + 1)">Next</a>
+            </li>
         </ul>
     </nav>
-
 </div>
+
+@code {
+    private List<Product> filteredProducts = new();
+    private List<Product> pagedProducts = new();
+    private List<Brand> brands = new();
+    private List<Category> categories = new();
+    private int currentPage = 1, pageSize = 20, totalPages, selectedBrandId = 0, selectedCategoryId = 0;
+    private string searchTerm = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        brands = await DbContext.Brands.OrderBy(b => b.Name).ToListAsync();
+        categories = await DbContext.Categories.OrderBy(c => c.Name).ToListAsync();
+        await LoadAndFilterProducts();
+    }
+
+    private async Task LoadAndFilterProducts()
+    {
+        var query = DbContext.Products.Include(p => p.Brand).Include(p => p.Category).AsQueryable();
+        if (!string.IsNullOrWhiteSpace(searchTerm)) query = query.Where(p => p.Name.ToLower().Contains(searchTerm) || p.Brand.Name.ToLower().Contains(searchTerm) || p.Category.Name.ToLower().Contains(searchTerm));
+        if (selectedBrandId > 0) query = query.Where(p => p.BrandID == selectedBrandId);
+        if (selectedCategoryId > 0) query = query.Where(p => p.CategoryID == selectedCategoryId);
+        filteredProducts = await query.OrderBy(p => p.Name).ToListAsync();
+        UpdatePagedProducts();
+    }
+
+    private void UpdatePagedProducts()
+    {
+        totalPages = (int)Math.Ceiling(filteredProducts.Count / (double)pageSize);
+        pagedProducts = filteredProducts.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+        StateHasChanged();
+    }
+
+    private async Task SearchProducts(ChangeEventArgs e) { searchTerm = e.Value.ToString().ToLower(); currentPage = 1; await LoadAndFilterProducts(); }
+    private async Task FilterByBrand(ChangeEventArgs e) { selectedBrandId = int.Parse(e.Value.ToString()); currentPage = 1; await LoadAndFilterProducts(); }
+    private async Task FilterByCategory(ChangeEventArgs e) { selectedCategoryId = int.Parse(e.Value.ToString()); currentPage = 1; await LoadAndFilterProducts(); }
+    private async Task ClearFilters() { searchTerm = string.Empty; selectedBrandId = 0; selectedCategoryId = 0; currentPage = 1; await LoadAndFilterProducts(); }
+    private void ChangePage(int pageNumber) { if (pageNumber < 1 || pageNumber > totalPages) return; currentPage = pageNumber; UpdatePagedProducts(); }
+    private async Task DeleteProduct(int productId) { var product = await DbContext.Products.FindAsync(productId); if (product != null) { DbContext.Products.Remove(product); await DbContext.SaveChangesAsync(); await LoadAndFilterProducts(); } }
+}

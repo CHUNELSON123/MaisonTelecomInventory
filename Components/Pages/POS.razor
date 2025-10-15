@@ -1,83 +1,158 @@
 ﻿@page "/pos"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@inject InventoryDbContext DbContext
+@inject NavigationManager NavigationManager
+
+<PageTitle>Point of Sale</PageTitle>
 
 <div class="pos-page">
     <h1>Record a New Sale</h1>
-
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">@errorMessage</div>
+    }
+    @if (!string.IsNullOrEmpty(successMessage))
+    {
+        <div class="alert alert-success">@successMessage</div>
+    }
     <div class="pos-container">
         <div class="product-selection">
             <div class="card">
-                <div class="card-header">
-                    Add Product
-                </div>
+                <div class="card-header">Add Product</div>
                 <div class="card-body">
-                    <div class="search-bar">
-                        <input type="text" class="form-control" placeholder="Search Product ...">
-                    </div>
+                    <div class="search-bar"><input type="text" class="form-control" placeholder="Search Product ..." @oninput="SearchProducts"></div>
                     <div class="results">
                         <p>Results:</p>
-                        <div class="product-item">
-                            <span>iPhone 11 Pro</span>
-                            <button class="btn btn-add">Add</button>
-                        </div>
-                        <div class="product-item">
-                            <span>Samsung Cable</span>
-                            <button class="btn btn-add">Add</button>
-                        </div>
+                        @if (productSearchResults.Any())
+                        {
+                            @foreach (var product in productSearchResults)
+                            {
+                                <div class="product-item">
+                                    <span>@product.Name (@product.StockQuantity in stock)</span>
+                                    <button class="btn btn-add" @onclick="() => AddToSale(product)" disabled="@(product.StockQuantity == 0)">Add</button>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>No products match your search.</p>
+                        }
                     </div>
                 </div>
             </div>
         </div>
         <div class="sale-summary">
             <div class="card">
-                <div class="card-header">
-                    Customer Sale (2 Items)
-                </div>
+                <div class="card-header">Customer Sale (@currentSaleItems.Sum(i => i.Quantity) Items)</div>
                 <div class="card-body">
                     <div class="customer-section">
-                        <span>Customer:</span>
+                        <span>Customer: <strong>@(selectedCustomer?.Name ?? "Walk-in Customer")</strong></span>
                         <div>
-                            <button class="btn btn-addcustomer" data-bs-toggle="modal" data-bs-target="#findCustomerModal">
-                                Find Customer
-                            </button>
-                            <button class="btn btn-findcustomer" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
-                                Add Customer
-                            </button>
+                            <button class="btn btn-addcustomer" @onclick="() => findCustomerModal.Open()">Find Customer</button>
+                            <button class="btn btn-findcustomer" @onclick="() => addCustomerModal.Open()">Add Customer</button>
                         </div>
                     </div>
                     <div class="sale-items">
-                        <div class="sale-item">
-                            <div class="item-info">
-                                <span>iPhone 11 Pro</span>
-                                <span class="price">FCFA 120, 000</span>
+                        @foreach (var item in currentSaleItems)
+                        {
+                            <div class="sale-item">
+                                <div class="item-info">
+                                    <span>@item.ProductName</span>
+                                    <span class="price">@CurrencyHelper.FormatPrice(item.UnitPrice)</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="btn btn-sm btn-secondary" @onclick="() => UpdateQuantity(item, -1)">-</button>
+                                    <span class="quantity">@item.Quantity</span>
+                                    <button class="btn btn-sm btn-secondary" @onclick="() => UpdateQuantity(item, 1)">+</button>
+                                    <button class="btn btn-sm btn-remove" @onclick="() => RemoveFromSale(item)">Remove</button>
+                                </div>
                             </div>
-                            <div class="item-actions">
-                                <button class="btn btn-sm btn-secondary">-</button>
-                                <span class="quantity">2</span>
-                                <button class="btn btn-sm btn-secondary">+</button>
-                                <button class="btn btn-sm btn-remove">Remove</button>
-                            </div>
-                        </div>
-                        <div class="sale-item">
-                            <div class="item-info">
-                                <span>Samsun</span>
-                                <span class="price">FCFA 120, 000</span>
-                            </div>
-                            <div class="item-actions">
-                                <button class="btn btn-sm btn-secondary">-</button>
-                                <span class="quantity">2</span>
-                                <button class="btn btn-sm btn-secondary">+</button>
-                                <button class="btn btn-sm btn-remove">Remove</button>
-                            </div>
-                        </div>
+                        }
                     </div>
                     <div class="total-section">
-                        <h5>Total: FCFA 200, 000</h5>
+                        <h5>Total: @CurrencyHelper.FormatPrice(CalculateTotal())</h5>
                     </div>
-                    <button class="btn btn-complete w-100">Complete Sale</button>
+                    <button class="btn btn-complete w-100" @onclick="CompleteSale" disabled="@(!currentSaleItems.Any())">Complete Sale</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<FindCustomer />
-<AddCustomer />
+
+<FindCustomer @ref="findCustomerModal" OnCustomerSelected="HandleCustomerSelected" />
+<AddCustomer @ref="addCustomerModal" OnCustomerAdded="HandleCustomerAdded" />
+
+@code {
+    private List<Product> productSearchResults = new();
+    private List<SaleItemViewModel> currentSaleItems = new();
+    private Customer? selectedCustomer;
+    private string errorMessage = string.Empty, successMessage = string.Empty;
+    private FindCustomer findCustomerModal;
+    private AddCustomer addCustomerModal;
+
+    private async Task SearchProducts(ChangeEventArgs e)
+    {
+        string searchTerm = e.Value.ToString().ToLower();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm)) productSearchResults.Clear();
+            else productSearchResults = await DbContext.Products.Where(p => p.Name.ToLower().Contains(searchTerm) && p.StockQuantity > 0).Take(10).ToListAsync();
+        }
+        catch (Exception ex) { errorMessage = "Error searching for products."; Console.WriteLine(ex); }
+        StateHasChanged();
+    }
+
+    private void AddToSale(Product product)
+    {
+        errorMessage = string.Empty;
+        var existingItem = currentSaleItems.FirstOrDefault(i => i.ProductId == product.ProductID);
+        if (existingItem != null)
+        {
+            if (existingItem.Quantity < product.StockQuantity) existingItem.Quantity++;
+            else errorMessage = $"Not enough stock for {product.Name}.";
+        }
+        else currentSaleItems.Add(new SaleItemViewModel { ProductId = product.ProductID, ProductName = product.Name, Quantity = 1, UnitPrice = product.SellingPrice, MaxQuantity = product.StockQuantity });
+    }
+
+    private void UpdateQuantity(SaleItemViewModel item, int change)
+    {
+        errorMessage = string.Empty;
+        var newQuantity = item.Quantity + change;
+        if (newQuantity > 0 && newQuantity <= item.MaxQuantity) item.Quantity = newQuantity;
+        else if (newQuantity > item.MaxQuantity) errorMessage = $"Not enough stock for {item.ProductName}.";
+    }
+
+    private void RemoveFromSale(SaleItemViewModel item) { currentSaleItems.Remove(item); }
+    private decimal CalculateTotal() { return currentSaleItems.Sum(i => i.Quantity * i.UnitPrice); }
+    private void HandleCustomerSelected(Customer customer) { selectedCustomer = customer; StateHasChanged(); }
+    private void HandleCustomerAdded(Customer customer) { selectedCustomer = customer; StateHasChanged(); }
+
+    private async Task CompleteSale()
+    {
+        errorMessage = string.Empty; successMessage = string.Empty;
+        if (!currentSaleItems.Any()) { errorMessage = "Cannot complete an empty sale."; return; }
+        using var transaction = await DbContext.Database.BeginTransactionAsync();
+        try
+        {
+            var sale = new Sale { SaleDate = DateTime.Now, CustomerID = selectedCustomer?.CustomerID, TotalPrice = CalculateTotal() };
+            DbContext.Sales.Add(sale);
+            await DbContext.SaveChangesAsync();
+            foreach (var item in currentSaleItems)
+            {
+                var product = await DbContext.Products.FindAsync(item.ProductId);
+                if (product == null || product.StockQuantity < item.Quantity) throw new Exception($"Not enough stock for {item.ProductName}.");
+                product.StockQuantity -= item.Quantity;
+                var saleItem = new SaleItem { SaleID = sale.SaleID, ProductID = item.ProductId, QuantitySold = item.Quantity, PriceAtTimeOfSale = item.UnitPrice };
+                DbContext.SaleItems.Add(saleItem);
+            }
+            await DbContext.SaveChangesAsync();
+            await transaction.CommitAsync();
+            successMessage = "Sale completed successfully!";
+            currentSaleItems.Clear(); selectedCustomer = null; productSearchResults.Clear();
+        }
+        catch (Exception ex) { await transaction.RollbackAsync(); errorMessage = $"Error completing sale: {ex.Message}"; }
+    }
+
+    public class SaleItemViewModel { public int ProductId { get; set; } public string ProductName { get; set; } public int Quantity { get; set; } public decimal UnitPrice { get; set; } public int MaxQuantity { get; set; } }
+}

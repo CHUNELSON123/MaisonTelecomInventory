@@ -1,45 +1,167 @@
-﻿@page "/editproduct"
+﻿@page "/editproduct/{ProductId:int}"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@using System.ComponentModel.DataAnnotations
+@inject InventoryDbContext DbContext
+@inject NavigationManager NavigationManager
 
 <div class="add-product-container">
     <div class="header-container">
         <h1>Edit Product</h1>
-        <button class="back-button">Back</button>
+        <button class="back-button" @onclick="Cancel">Back</button>
     </div>
 
-    <div class="form-columns">
-        <div class="form-column">
-            <div class="form-group">
-                <label for="product-name">Product Name</label>
-                <input type="text" id="product-name" />
-            </div>
-            <div class="form-group">
-                <label for="brand">Brand</label>
-                <input type="text" id="brand" />
-            </div>
-            <div class="form-group">
-                <label for="category">Category</label>
-                <select id="category"></select>
-            </div>
-        </div>
+    @if (productViewModel != null)
+    {
+        <EditForm Model="@productViewModel" OnValidSubmit="UpdateProduct">
+            <DataAnnotationsValidator />
 
-        <div class="form-column">
-            <div class="form-group">
-                <label for="cost-price">Cost Price</label>
-                <input type="text" id="cost-price" />
-            </div>
-            <div class="form-group">
-                <label for="selling-price">Selling Price</label>
-                <input type="text" id="selling-price" />
-            </div>
-            <div class="form-group">
-                <label for="stock-quantity">Stock Quantity</label>
-                <input type="text" id="stock-quantity" />
-            </div>
-        </div>
-    </div>
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @errorMessage
+                </div>
+            }
+            <ValidationSummary />
 
-    <div class="action-buttons">
-        <button class="save-button">Update Product</button>
-        <button class="cancel-button">Cancel</button>
-    </div>
+            <div class="form-columns">
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="product-name">Product Name</label>
+                        <InputText id="product-name" @bind-Value="productViewModel.Name" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="brand">Brand</label>
+                        <InputSelect id="brand" @bind-Value="productViewModel.BrandID" class="form-control">
+                            <option value="0">Select Brand</option>
+                            @foreach (var brand in brands)
+                            {
+                                <option value="@brand.BrandID">@brand.Name</option>
+                            }
+                        </InputSelect>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <InputSelect id="category" @bind-Value="productViewModel.CategoryID" class="form-control">
+                            <option value="0">Select Category</option>
+                            @foreach (var category in categories)
+                            {
+                                <option value="@category.CategoryID">@category.Name</option>
+                            }
+                        </InputSelect>
+                    </div>
+                </div>
+
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="cost-price">Cost Price</label>
+                        <InputNumber id="cost-price" @bind-Value="productViewModel.CostPrice" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="selling-price">Selling Price</label>
+                        <InputNumber id="selling-price" @bind-Value="productViewModel.SellingPrice" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="stock-quantity">Stock Quantity</label>
+                        <InputNumber id="stock-quantity" @bind-Value="productViewModel.StockQuantity" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="submit" class="save-button">Update Product</button>
+                <button type="button" class="cancel-button" @onclick="Cancel">Cancel</button>
+            </div>
+        </EditForm>
+    }
+    else
+    {
+        <p>Loading product details...</p>
+    }
 </div>
+
+@code {
+    [Parameter]
+    public int ProductId { get; set; }
+
+    private ProductViewModel productViewModel;
+    private List<Brand> brands = new();
+    private List<Category> categories = new();
+    private string errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var product = await DbContext.Products.FindAsync(ProductId);
+        if (product != null)
+        {
+            productViewModel = new ProductViewModel
+            {
+                Name = product.Name,
+                BrandID = product.BrandID,
+                CategoryID = product.CategoryID,
+                CostPrice = product.CostPrice,
+                SellingPrice = product.SellingPrice,
+                StockQuantity = product.StockQuantity
+            };
+        }
+
+        brands = await DbContext.Brands.ToListAsync();
+        categories = await DbContext.Categories.ToListAsync();
+    }
+
+    private async Task UpdateProduct()
+    {
+        try
+        {
+            var productToUpdate = await DbContext.Products.FindAsync(ProductId);
+            if (productToUpdate != null)
+            {
+                productToUpdate.Name = productViewModel.Name;
+                productToUpdate.BrandID = productViewModel.BrandID;
+                productToUpdate.CategoryID = productViewModel.CategoryID;
+                productToUpdate.CostPrice = productViewModel.CostPrice;
+                productToUpdate.SellingPrice = productViewModel.SellingPrice;
+                productToUpdate.StockQuantity = productViewModel.StockQuantity;
+
+                await DbContext.SaveChangesAsync();
+                NavigationManager.NavigateTo("/products");
+            }
+            else
+            {
+                errorMessage = "Product not found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error updating product: {ex.GetBaseException().Message}";
+            Console.WriteLine(ex.ToString());
+        }
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/products");
+    }
+
+    public class ProductViewModel
+    {
+        [Required]
+        [StringLength(200)]
+        public string Name { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a valid brand.")]
+        public int BrandID { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a valid category.")]
+        public int CategoryID { get; set; }
+
+        [Range(0.01, double.MaxValue, ErrorMessage = "Cost price must be greater than 0.")]
+        public decimal CostPrice { get; set; }
+
+        [Range(0.01, double.MaxValue, ErrorMessage = "Selling price must be greater than 0.")]
+        public decimal SellingPrice { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = "Stock quantity cannot be negative.")]
+        public int StockQuantity { get; set; }
+    }
+}

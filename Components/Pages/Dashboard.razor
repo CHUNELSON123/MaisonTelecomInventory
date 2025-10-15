@@ -1,71 +1,145 @@
 ﻿@page "/"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@inject InventoryDbContext DbContext
 
 <PageTitle>Dashboard</PageTitle>
 
 <div class="dashboard-container">
     <h1>Dashboard</h1>
 
-    <div class="dashboard-cards">
-        <div class="card">
-            <div class="card-header">
-                Quick Stats
+    @if (isLoading)
+    {
+        <p><em>Loading dashboard...</em></p>
+    }
+    else
+    {
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-header">
+                    Quick Stats
+                </div>
+                <div class="card-body">
+                    <p><strong>Total Products:</strong> @totalProducts</p>
+                    <p><strong>Items Sold Today:</strong> @itemsSoldToday</p>
+                    <p><strong>Revenue Today:</strong> @CurrencyHelper.FormatPrice(revenueToday)</p>
+                </div>
             </div>
-            <div class="card-body">
-                <p><strong>Total Products:</strong></p>
-                <p><strong>Items Sold Today:</strong></p>
-                <p><strong>Revenue Today:</strong></p>
+
+            <div class="card">
+                <div class="card-header">
+                    Low Stock Items (#@lowStockItems.Count)
+                </div>
+                <div class="card-body">
+                    @if (lowStockItems.Any())
+                    {
+                        <ul>
+                            @foreach (var item in lowStockItems)
+                            {
+                                <li>@item.Name (@item.StockQuantity in stock)</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>No items with low stock.</p>
+                    }
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Quick Action
+                </div>
+                <div class="card-body quick-actions">
+                    <a href="/addproduct">
+                        <button class="btn btn-primary">Add New Product</button>
+                    </a>
+                    <a href="/pos">
+                        <button class="btn btn-secondary">Record a Sale</button>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                Low Stock Items (#3)
-            </div>
-            <div class="card-body">
-                <ul>
-                    <li>iPhone 11 Pro</li>
-                    <li>Samsung Cable</li>
-                    <li>Laptop</li>
-                </ul>
-            </div>
+        <div class="recent-sales">
+            <h2>Recent Sales</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Sale ID</th>
+                        <th>Items</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (recentSales.Any())
+                    {
+                        var serial = 1;
+                        @foreach (var sale in recentSales)
+                        {
+                            <tr>
+                                <td>@(serial++)</td>
+                                <td>Sale #@sale.SaleID.ToString("D4")</td>
+                                <td>@sale.ItemsCount Items</td>
+                                <td>@CurrencyHelper.FormatPrice(sale.TotalAmount)</td>
+                                <td>@sale.SaleDate.ToString("yyyy-MM-dd")</td>
+                                <td><button class="btn btn-view" @onclick="() => ViewSale(sale.SaleID)">View</button></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center">No recent sales found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-
-        <div class="card">
-            <div class="card-header">
-                Quick Action
-            </div>
-            <div class="card-body quick-actions">
-                <a href="/addproduct">
-                    <button class="btn btn-primary">Add New Product</button>
-                </a>
-                <button class="btn btn-secondary">Record a Sale</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="recent-sales">
-        <h2>Recent Sales</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Sale ID</th>
-                    <th>Items</th>
-                    <th>Amount</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Sale #0001</td>
-                    <td>2 Items</td>
-                    <td>FCFA 245,000 XAF</td>
-                    <td>1/09/2025</td>
-                    <td><button class="btn btn-view">View</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    }
 </div>
+
+@code {
+    private int totalProducts;
+    private int itemsSoldToday;
+    private decimal revenueToday;
+    private List<Product> lowStockItems = new();
+    private List<RecentSaleViewModel> recentSales = new();
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        isLoading = true;
+        totalProducts = await DbContext.Products.CountAsync();
+        var today = DateTime.Now.Date;
+        var salesToday = DbContext.Sales.Where(s => s.SaleDate.Date == today);
+        revenueToday = await salesToday.SumAsync(s => s.TotalPrice);
+        itemsSoldToday = await DbContext.SaleItems.Where(si => si.Sale.SaleDate.Date == today).SumAsync(si => si.QuantitySold);
+        lowStockItems = await DbContext.Products.Where(p => p.StockQuantity < 10).OrderBy(p => p.StockQuantity).Take(3).ToListAsync();
+        recentSales = await DbContext.Sales.OrderByDescending(s => s.SaleDate).Take(10)
+            .Select(s => new RecentSaleViewModel
+            {
+                SaleID = s.SaleID,
+                ItemsCount = s.SaleItems.Sum(si => si.QuantitySold),
+                TotalAmount = s.TotalPrice,
+                SaleDate = s.SaleDate
+            })
+            .ToListAsync();
+        isLoading = false;
+        StateHasChanged();
+    }
+
+    private void ViewSale(int saleId) { }
+
+    public class RecentSaleViewModel
+    {
+        public int SaleID { get; set; }
+        public int ItemsCount { get; set; }
+        public decimal TotalAmount { get; set; }
+        public DateTime SaleDate { get; set; }
+    }
+}

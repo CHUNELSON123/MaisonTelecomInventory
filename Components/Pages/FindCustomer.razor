@@ -1,35 +1,87 @@
-﻿@page "/findcustomer"
-<div class="modal fade" id="findCustomerModal" tabindex="-1" aria-labelledby="findCustomerModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="findCustomerModalLabel">Find or Add Customer</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-               <div class="search-bar">
-                    <input type="text" class="form-control mb-3" placeholder="Search by name or phone ...">
-               </div>
+﻿@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@inject InventoryDbContext DbContext
 
-                <h6>Results:</h6>
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        CHU BEH
-                        <button class="btn btn-primary btn-sm">Select</button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        NELSON
-                        <button class="btn btn-primary btn-sm">Select</button>
-                    </li>
-                </ul>
+@if (IsOpen)
+{
+    <div class="modal fade show" style="display:block" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Find Customer</h5>
+                    <button type="button" class="btn-close" @onclick="Close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="search-bar">
+                        <input type="text" class="form-control mb-3" placeholder="Search by name or phone ..." @oninput="Search" value="@searchTerm">
+                    </div>
 
-                <hr />
-
-                <div class="d-flex justify-content-between align-items-center">
-                    <span>Can't find them?</span>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomerModal">Create New Customer</button>
+                    <h6>Results:</h6>
+                    @if (searchResults.Any())
+                    {
+                        <ul class="list-group">
+                            @foreach (var customer in searchResults)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    @customer.Name (@customer.PhoneNumber)
+                                    <button class="btn btn-primary btn-sm" @onclick="() => SelectCustomer(customer)">Select</button>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>No customers found.</p>
+                    }
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+
+@code {
+    [Parameter] public EventCallback<Customer> OnCustomerSelected { get; set; }
+
+    private List<Customer> searchResults = new();
+    private string searchTerm = string.Empty;
+    public bool IsOpen { get; private set; }
+
+    public void Open()
+    {
+        searchResults.Clear();
+        searchTerm = string.Empty;
+        IsOpen = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        IsOpen = false;
+        StateHasChanged();
+    }
+
+    private async Task Search(ChangeEventArgs e)
+    {
+        searchTerm = e.Value.ToString().ToLower();
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            searchResults.Clear();
+        }
+        else
+        {
+            searchResults = await DbContext.Customers
+                .Where(c => c.Name.ToLower().Contains(searchTerm) || (c.PhoneNumber != null && c.PhoneNumber.Contains(searchTerm)))
+                .Take(10)
+                .ToListAsync();
+        }
+        StateHasChanged();
+    }
+
+    private async Task SelectCustomer(Customer customer)
+    {
+        await OnCustomerSelected.InvokeAsync(customer);
+        Close();
+    }
+}

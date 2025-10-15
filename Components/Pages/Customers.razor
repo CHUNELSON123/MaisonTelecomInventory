@@ -1,16 +1,16 @@
 ﻿@page "/customers"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@inject InventoryDbContext DbContext
+@inject NavigationManager NavigationManager
 
 <PageTitle>Manage Customers</PageTitle>
 
 <div class="customers-container">
     <h1>Manage Customers</h1>
-
     <div class="search-bar-container">
-        <input type="text" class="form-control customer-search" placeholder="Search by name or phone ...">
+        <input type="text" class="form-control customer-search" placeholder="Search by name or phone ..." @oninput="SearchCustomers">
     </div>
-
-    
-
     <table class="table customers-table">
         <thead>
             <tr>
@@ -23,37 +23,80 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>+1234567890</td>
-                <td>$599.99</td>
-                <td>2025-10-09</td>
-                <td>
-                    <button class="btn btn-sm btn-edit">Edit</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <button class="btn btn-sm btn-edit">Edit</button>
-                </td>
-            </tr>
+            @if (pagedCustomers != null && pagedCustomers.Any())
+            {
+                @foreach (var (customer, index) in pagedCustomers.Select((c, i) => (c, i)))
+                {
+                    <tr>
+                        <td>@((currentPage - 1) * pageSize + index + 1)</td>
+                        <td>@customer.Name</td>
+                        <td>@customer.PhoneNumber</td>
+                        <td>@CurrencyHelper.FormatPrice(customer.TotalSpent)</td>
+                        <td>@customer.LastSale?.ToString("yyyy-MM-dd")</td>
+                        <td><button class="btn btn-sm btn-edit" @onclick="() => EditCustomer(customer.CustomerID)">Edit</button></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="6" class="text-center">No customers found.</td></tr>
+            }
         </tbody>
     </table>
-
     <nav class="pagination-nav">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item @(currentPage == 1 ? "disabled" : "")"><a class="page-link" href="#" @onclick:preventDefault @onclick="() => ChangePage(currentPage - 1)">Previous</a></li>
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                var pageNumber = i;
+                <li class="page-item @(currentPage == pageNumber ? "active" : "")"><a class="page-link" href="#" @onclick:preventDefault @onclick="() => ChangePage(pageNumber)">@pageNumber</a></li>
+            }
+            <li class="page-item @(currentPage == totalPages ? "disabled" : "")"><a class="page-link" href="#" @onclick:preventDefault @onclick="() => ChangePage(currentPage + 1)">Next</a></li>
         </ul>
     </nav>
 </div>
 
- 
+@code {
+    private List<CustomerViewModel> allCustomers = new();
+    private List<CustomerViewModel> pagedCustomers = new();
+    private int currentPage = 1, pageSize = 20, totalPages;
+    private string searchTerm = string.Empty;
+
+    protected override async Task OnInitializedAsync() { await LoadCustomers(); }
+
+    private async Task LoadCustomers()
+    {
+        var customersQuery = DbContext.Customers
+            .Select(c => new CustomerViewModel
+            {
+                CustomerID = c.CustomerID,
+                Name = c.Name,
+                PhoneNumber = c.PhoneNumber,
+                TotalSpent = c.Sales.Sum(s => s.TotalPrice),
+                LastSale = c.Sales.OrderByDescending(s => s.SaleDate).Select(s => (DateTime?)s.SaleDate).FirstOrDefault()
+            });
+        if (!string.IsNullOrWhiteSpace(searchTerm)) customersQuery = customersQuery.Where(c => c.Name.ToLower().Contains(searchTerm) || (c.PhoneNumber != null && c.PhoneNumber.Contains(searchTerm)));
+        allCustomers = await customersQuery.OrderBy(c => c.Name).ToListAsync();
+        UpdatePagedCustomers();
+    }
+
+    private void UpdatePagedCustomers()
+    {
+        totalPages = (int)Math.Ceiling(allCustomers.Count / (double)pageSize);
+        pagedCustomers = allCustomers.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+        StateHasChanged();
+    }
+
+    private async Task SearchCustomers(ChangeEventArgs e) { searchTerm = e.Value.ToString().ToLower(); currentPage = 1; await LoadCustomers(); }
+    private void ChangePage(int pageNumber) { if (pageNumber < 1 || pageNumber > totalPages) return; currentPage = pageNumber; UpdatePagedCustomers(); }
+    private void EditCustomer(int customerId) { }
+
+    public class CustomerViewModel
+    {
+        public int CustomerID { get; set; }
+        public string Name { get; set; }
+        public string? PhoneNumber { get; set; }
+        public decimal TotalSpent { get; set; }
+        public DateTime? LastSale { get; set; }
+    }
+}

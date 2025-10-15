@@ -12,4 +12,5 @@ public class InventoryDbContext : DbContext
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Sale> Sales { get; set; }
     public DbSet<SaleItem> SaleItems { get; set; }
+    public DbSet<Brand> Brands { get; set; }
 }

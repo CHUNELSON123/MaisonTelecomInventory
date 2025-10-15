@@ -8,4 +8,7 @@ public class Category
     [Required] // This makes the Name field required
     [StringLength(100)]
     public string Name { get; set; } = string.Empty;
+
+    public ICollection<Product>? Products { get; set; }
+
 }

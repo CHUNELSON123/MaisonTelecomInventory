@@ -1,6 +1,7 @@
 wwwroot\app.css
 wwwroot\bootstrap\bootstrap.min.css
 wwwroot\bootstrap\bootstrap.min.css.map
+wwwroot\css\addeditproduct.css
 wwwroot\css\custom-layout.css
 wwwroot\css\customers.css
 wwwroot\css\Dashboard.css
@@ -10,4 +11,3 @@ wwwroot\css\report.css
 wwwroot\css\sales.css
 wwwroot\favicon.png
 wwwroot\Images\logo.jpg
-wwwroot\css\addeditproduct.css

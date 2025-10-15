@@ -161,10 +161,10 @@ C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\staticwebas
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\MaisonTe.F009DE4B.Up2Date
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\MaisonTelecomInventory.dll
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\refint\MaisonTelecomInventory.dll
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\MaisonTelecomInventory.pdb
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\MaisonTelecomInventory.genruntimeconfig.cache
 C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\ref\MaisonTelecomInventory.dll
+C:\Users\FLAVIN\Documents\MT\MaisonTelecomInventory\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

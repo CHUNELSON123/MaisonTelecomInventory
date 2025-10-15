@@ -1,5 +1,4 @@
-﻿// Inside Data/Product.cs
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 public class Product
@@ -11,12 +10,7 @@ public class Product
     [StringLength(200)]
     public string Name { get; set; } = string.Empty;
 
-    [StringLength(100)]
-    public string? Brand { get; set; }
-
-    public string? Specifications { get; set; }
-
-    [Column(TypeName = "decimal(18, 2)")] // For storing money values
+    [Column(TypeName = "decimal(18, 2)")]
     public decimal CostPrice { get; set; }
 
     [Column(TypeName = "decimal(18, 2)")]
@@ -24,7 +18,11 @@ public class Product
 
     public int StockQuantity { get; set; }
 
-    // This is the Foreign Key to the Category table
+    // Foreign Key to the Category table
     public int CategoryID { get; set; }
     public Category? Category { get; set; }
+
+    // Foreign Key to the Brand table
+    public int BrandID { get; set; }
+    public Brand? Brand { get; set; }
 }
